@@ -1,6 +1,8 @@
-# Army Game – Decorator Pattern
+# Army Game
 
-## Class Diagram
+## Decorator Pattern
+
+### Class Diagram
 
 ```mermaid
 classDiagram
@@ -10,7 +12,7 @@ classDiagram
     BaseSoldier <|-- Infantryman
     BaseSoldier <|-- Horseman
     Soldier <|.. SoldierDecorator
-    SoldierDecorator --o Soldier
+    Soldier o-- SoldierDecorator
 
     class BaseSoldier{
         <<abstract>>
@@ -59,9 +61,7 @@ classDiagram
     }
 ```
 
-## Question 1
-
-Theo Decorator Pattern, "chức năng của đối tượng trở nên phong phú hơn" – điều này có đúng không?
+### Theo Decorator Pattern, "chức năng của đối tượng trở nên phong phú hơn" – điều này có đúng không?
 
 Có. Decorator Pattern làm cho hành vi của binh lính trở nên phong phú hơn bằng cách mở rộng chức năng của đối tượng mà không cần sửa đổi lớp gốc.
 
@@ -100,9 +100,7 @@ Nhờ vậy hệ thống có thể tạo ra nhiều biến thể hành vi khác 
 
 Điều này tuân theo nguyên lý **Open-Closed Principle** – tức là mở rộng hành vi của đối tượng mà không cần sửa đổi mã nguồn hiện có.
 
-## Question 2
-
-Nếu có thêm ràng buộc: một binh lính không thể mang hai trang bị cùng loại – Decorator có phù hợp không?
+### Nếu có thêm ràng buộc: một binh lính không thể mang hai trang bị cùng loại – Decorator có phù hợp không?
 
 Không. Decorator Pattern không phải là phương pháp thích hợp để đảm bảo ràng buộc này.
 
