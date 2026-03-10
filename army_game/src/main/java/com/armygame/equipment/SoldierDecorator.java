@@ -1,4 +1,6 @@
-package org.example;
+package com.armygame.equipment;
+
+import com.armygame.soldier.Soldier;
 
 public abstract class SoldierDecorator implements Soldier {
     private final Soldier wrappee;

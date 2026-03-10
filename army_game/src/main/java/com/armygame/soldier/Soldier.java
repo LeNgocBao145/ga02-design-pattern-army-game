@@ -1,4 +1,4 @@
-package org.example;
+package com.armygame.soldier;
 
 public interface Soldier {
     public int hit();

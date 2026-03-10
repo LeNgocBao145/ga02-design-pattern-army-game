@@ -1,4 +1,6 @@
-package org.example;
+package com.armygame.equipment;
+
+import com.armygame.soldier.Soldier;
 
 public class Shield extends SoldierDecorator{
     private final int defense = 10;

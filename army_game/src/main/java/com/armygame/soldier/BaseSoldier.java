@@ -1,4 +1,4 @@
-package org.example;
+package com.armygame.soldier;
 
 public abstract class BaseSoldier implements Soldier {
     protected int hp;

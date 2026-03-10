@@ -1,4 +1,4 @@
-package org.example;
+package com.armygame.soldier;
 
 public class Infantryman extends BaseSoldier{
     public Infantryman() {
