@@ -10,7 +10,7 @@ classDiagram
     BaseSoldier <|-- Infantryman
     BaseSoldier <|-- Horseman
     Soldier <|.. SoldierDecorator
-    SoldierDecorator --> Soldier
+    SoldierDecorator --o Soldier
 
     class BaseSoldier{
         <<abstract>>
@@ -120,11 +120,5 @@ Soldier s =
 Điều này dẫn đến việc một binh lính có thể mang hai thanh kiếm, điều mà yêu cầu mới không cho phép.
 
 Decorator Pattern chỉ giải quyết việc mở rộng hành vi của đối tượng, chứ không kiểm soát các ràng buộc logic giữa các decorator.
-
-Để đảm bảo ràng buộc này, cần sử dụng các cơ chế khác như:
-
-- **Factory Pattern** để kiểm tra trước khi gắn trang bị
-- **Builder Pattern** để kiểm soát quá trình tạo soldier
-- **Equipment Manager** để quản lý danh sách trang bị của soldier
 
 Do đó, Decorator phù hợp để mở rộng hành vi, nhưng không phù hợp để đảm bảo các ràng buộc như "không được trang bị hai vật phẩm cùng loại".
