@@ -12,7 +12,7 @@ classDiagram
     BaseSoldier <|-- Infantryman
     BaseSoldier <|-- Horseman
     Soldier <|.. SoldierDecorator
-    Soldier o-- SoldierDecorator
+    SoldierDecorator o-- Soldier
 
     class BaseSoldier{
         <<abstract>>
