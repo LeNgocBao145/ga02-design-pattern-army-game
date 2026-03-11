@@ -4,6 +4,7 @@ import com.armygame.soldier.Soldier;
 
 public abstract class SoldierDecorator implements Soldier {
     private final Soldier wrappee;
+    protected int durability;
 
     public SoldierDecorator(Soldier source) {
         this.wrappee = source;
@@ -17,5 +18,9 @@ public abstract class SoldierDecorator implements Soldier {
     @Override
     public boolean wardOff(int strength) {
         return wrappee.wardOff(strength);
+    }
+
+    public void decreaseDurability() {
+        durability--;
     }
 }

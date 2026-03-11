@@ -2,7 +2,7 @@ package com.armygame.equipment;
 
 import com.armygame.soldier.Soldier;
 
-public class Shield extends SoldierDecorator{
+public class Shield extends SoldierDecorator implements Equipment{
     private final int defense = 10;
 
     public Shield(Soldier source) {
@@ -12,5 +12,10 @@ public class Shield extends SoldierDecorator{
     @Override
     public boolean wardOff(int strength) {
         return super.wardOff(strength - this.defense);
+    }
+
+    @Override
+    public Soldier applyEquipment(Soldier soldier) {
+        return new Shield(soldier);
     }
 }
