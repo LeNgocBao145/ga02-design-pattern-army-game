@@ -10,7 +10,7 @@ public class Infantryman extends BaseSoldier{
         return this.strength;
     }
     public boolean wardOff(int strength){
-        System.out.println("Infantryman ward off with strength " + this.hp);
+        System.out.println("Infantryman ward off with strength " + strength);
         setHp(this.hp - strength);
         return strength < this.hp;
     }

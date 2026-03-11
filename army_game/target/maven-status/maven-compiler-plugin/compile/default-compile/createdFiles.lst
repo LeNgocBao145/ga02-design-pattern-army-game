@@ -1,0 +1,8 @@
+com\armygame\soldier\Infantryman.class
+com\armygame\soldier\Soldier.class
+com\armygame\soldier\Horseman.class
+com\armygame\equipment\SoldierDecorator.class
+com\armygame\Main.class
+com\armygame\soldier\BaseSoldier.class
+com\armygame\equipment\Sword.class
+com\armygame\equipment\Shield.class
