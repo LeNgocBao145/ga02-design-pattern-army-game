@@ -31,9 +31,9 @@ public class SoldierProxy implements Soldier {
             try {
 
                 Constructor<? extends SoldierDecorator> ctor =
-                        type.getConstructor(Soldier.class);
+                        type.getDeclaredConstructor(Soldier.class);
 
-                soldier = (Soldier) ctor.newInstance(soldier);
+                soldier = ctor.newInstance(soldier);
 
                 equipments.add(type);
 

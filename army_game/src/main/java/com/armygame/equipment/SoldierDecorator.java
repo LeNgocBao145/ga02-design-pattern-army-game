@@ -23,4 +23,8 @@ public abstract class SoldierDecorator implements Soldier {
     public void decreaseDurability() {
         durability--;
     }
+
+    public int getDurability() {
+        return durability;
+    }
 }

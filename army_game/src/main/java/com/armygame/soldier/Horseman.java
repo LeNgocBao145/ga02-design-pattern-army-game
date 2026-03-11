@@ -13,6 +13,6 @@ public class Horseman extends BaseSoldier{
     public boolean wardOff(int strength){
         System.out.println("Horseman ward off with strength " + strength);
         setHp(this.hp - strength);
-        return strength < this.hp;
+        return this.hp > 0;
     }
 }
