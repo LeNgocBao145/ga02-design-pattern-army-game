@@ -1,6 +1,8 @@
 package com.armygame.soldier;
 
-public interface Soldier {
-    public int hit();
-    public boolean wardOff(int strength);
+import com.armygame.army.ArmyComponent;
+
+//Chỉ để trống 
+public interface Soldier extends ArmyComponent {
+    
 }

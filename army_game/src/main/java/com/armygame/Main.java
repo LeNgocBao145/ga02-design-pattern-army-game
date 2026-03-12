@@ -1,11 +1,14 @@
 package com.armygame;
 
+import com.armygame.army.Group;
 import com.armygame.equipment.Shield;
 import com.armygame.equipment.SoldierProxy;
 import com.armygame.equipment.Sword;
 import com.armygame.soldier.Horseman;
 import com.armygame.soldier.Infantryman;
 import com.armygame.soldier.Soldier;
+import com.armygame.visitor.CountVisitor;
+import com.armygame.visitor.DisplayVisitor;
 
 public class Main {
     public static void main(String[] args) {
@@ -92,5 +95,94 @@ public class Main {
         System.out.println("Attacker (Infantryman+Sword+Shield) survived: " + atkSurvived); // effective 5, true
 
         System.out.println("\n=== Demo Complete ===");
+
+
+       System.out.println("\n\n=== Army Game - Composite & Visitor Pattern Demo ===\n");
+
+        // ====== 1. Setup Composite Structure (Groups & Army) ======
+        System.out.println("--- 1. Building the Army Structure ---");
+        
+        // Create Squad 1 (2 Infantrymen)
+        Group squad1 = new Group();
+        SoldierProxy inf1 = new SoldierProxy(new Infantryman(500,20,"Luan")); // HP: 100, Damage: 10
+        SoldierProxy inf2 = new SoldierProxy(new Infantryman(300,50,"Tai")); // HP: 100, Damage: 10
+        squad1.add(inf1);
+        squad1.add(inf2);
+        System.out.println("Created Squad 1 with 2 Infantrymen.");
+
+        // Create Squad 2 (1 Horseman, 1 Infantryman already equipped with a Shield)
+        Group squad2 = new Group();
+        SoldierProxy horse1 = new SoldierProxy(new Horseman(250,30,"Thuy"));  // HP: 150, Damage: 15
+        SoldierProxy inf3 = new SoldierProxy(new Infantryman(30,10,"Ngoc")); // HP: 100, Damage: 10
+        inf3.addEquipment(Shield.class); // Equip in advance
+        squad2.add(horse1);
+        squad2.add(inf3);
+        System.out.println("Created Squad 2 with 1 Horseman and 1 Infantryman (with Shield).");
+
+        // Create the Army (Contains 2 Squads)
+        Group army = new Group();
+        army.add(squad1);
+        army.add(squad2);
+        System.out.println("Created Army containing Squad 1 and Squad 2.");
+        System.out.println();
+
+        // ====== 2. Composite: hit() (Aggregate Strength) ======
+        System.out.println("--- 2. Composite hit() ---");
+        // Expected total damage: (10 + 10) + (15 + 10) = 45
+        System.out.println("Total Army Hit damage: " + army.hit() + " (Expected: 45)");
+        System.out.println();
+
+        // ====== 3. Composite: addEquipment() (Distribute to all) ======
+        System.out.println("--- 3. Composite addEquipment() ---");
+        System.out.println("Equipping the entire army with Swords...");
+        army.addEquipment(Sword.class); 
+        // Infantry 1, 2, 3 and Horseman 1 will all receive a Sword (+10 damage each)
+        
+        // New damage: 45 base + (4 units * 10 sword damage) = 85
+        System.out.println("New Total Army Hit damage: " + army.hit() + " (Expected: 85)");
+        System.out.println();
+
+        // ====== 4. Visitor: DisplayVisitor ======
+        System.out.println("--- 4. Visitor: DisplayVisitor ---");
+        // Note: If your Proxy class has the 'name' attribute added,
+        // the Visitor will print the names. Otherwise, it prints the basic structure.
+        DisplayVisitor displayVisitor = new DisplayVisitor();
+        army.accept(displayVisitor);
+        System.out.println();
+
+        // ====== 5. Visitor: CountVisitor ======
+        System.out.println("--- 5. Visitor: CountVisitor ---");
+        CountVisitor countVisitor = new CountVisitor();
+        army.accept(countVisitor);
+        countVisitor.showReport(); 
+        // Expected: 3 Infantrymen, 1 Horseman
+        System.out.println();
+
+        // ====== 6. Composite: wardOff() (Damage Distribution & Casualties) ======
+        System.out.println("--- 6. Composite wardOff() (Damage Distribution) ---");
+        
+        // Current structure: Army contains [Squad 1, Squad 2]. Total of 2 top-level units.
+        // Attacking Army with 200 damage.
+        
+        
+        System.out.println("Incoming massive attack of 200 damage to the Army!");
+        boolean armySurvived = army.wardOff(200);
+        System.out.println("Did the Army survive? " + armySurvived);
+        
+        System.out.println("\nChecking troops after attack (Running DisplayVisitor again):");
+        army.accept(new DisplayVisitor());
+
+        System.out.println("\n--- 7. Lethal Attack (Casualties simulation) ---");
+      
+       
+        System.out.println("Incoming lethal attack of 400 damage!");
+        army.wardOff(400);
+        
+        System.out.println("\nChecking remaining troops:");
+        CountVisitor countRemaining = new CountVisitor(); // Count remaining alive units
+        army.accept(countRemaining);
+        countRemaining.showReport(); // Print the number of survivors
+        
+        System.out.println("\n=== Demo Part 2 Complete ===");
     }
 }

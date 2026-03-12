@@ -1,6 +1,7 @@
 package com.armygame.equipment;
 
 import com.armygame.soldier.Soldier;
+import com.armygame.visitor.ArmyVisitor;
 
 import java.lang.reflect.Constructor;
 import java.util.HashSet;
@@ -23,7 +24,8 @@ public class SoldierProxy implements Soldier {
     public boolean wardOff(int strength) {
         return soldier.wardOff(strength);
     }
-
+    
+    @Override
     public void addEquipment(Class<? extends SoldierDecorator> type) {
 
         if(!equipments.contains(type)) {
@@ -42,4 +44,17 @@ public class SoldierProxy implements Soldier {
             }
         }
     }
+    @Override
+    public String getName(){
+        return soldier.getName();
+    }
+    @Override
+public void accept(ArmyVisitor visitor) {
+   
+    visitor.visit(this); 
+    if (soldier != null) {
+        soldier.accept(visitor); 
+    }
+    System.out.println(); 
+}
 }
