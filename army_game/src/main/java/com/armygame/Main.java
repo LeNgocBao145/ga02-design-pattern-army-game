@@ -79,14 +79,15 @@ public class Main {
 
         SoldierProxy defender = new SoldierProxy(new Horseman());
         defender.addEquipment(Shield.class);
+        defender.addEquipment(Shield.class);
 
-        int attackDmg = attacker.hit();
+        float attackDmg = attacker.hit();
         System.out.println("Attacker (Infantryman+Sword+Shield) deals: " + attackDmg);     // 10+10 = 20
         boolean defSurvived = defender.wardOff(attackDmg);
         System.out.println("Defender (Horseman+Shield) survived: " + defSurvived);          // effective 10, true
 
         System.out.println();
-        int counterDmg = defender.hit();
+        float counterDmg = defender.hit();
         System.out.println("Defender (Horseman+Shield) counter-attacks: " + counterDmg);    // 15
         boolean atkSurvived = attacker.wardOff(counterDmg);
         System.out.println("Attacker (Infantryman+Sword+Shield) survived: " + atkSurvived); // effective 5, true

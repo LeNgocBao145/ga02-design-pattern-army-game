@@ -1,19 +1,19 @@
 package com.armygame.soldier;
 
 public abstract class BaseSoldier implements Soldier {
-    protected int hp;
+    protected float hp;
     protected int strength;
 
-    BaseSoldier(int hp, int strength) {
+    BaseSoldier(float hp, int strength) {
         this.hp = hp;
         this.strength = strength;
     }
 
-    public int getHp() {
+    public float getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(float hp) {
         this.hp = hp;
     }
 }

@@ -15,31 +15,27 @@ public class SoldierProxy implements Soldier {
     }
 
     @Override
-    public int hit() {
+    public float hit() {
         return soldier.hit();
     }
 
     @Override
-    public boolean wardOff(int strength) {
+    public boolean wardOff(float strength) {
         return soldier.wardOff(strength);
     }
 
     public void addEquipment(Class<? extends SoldierDecorator> type) {
-
-        if(!equipments.contains(type)) {
-
-            try {
-
-                Constructor<? extends SoldierDecorator> ctor =
-                        type.getDeclaredConstructor(Soldier.class);
-
-                soldier = ctor.newInstance(soldier);
-
-                equipments.add(type);
-
-            } catch (Exception e) {
-                throw new IllegalStateException("Failed to add equipment: " + type.getName(), e);
-            }
+        if(equipments.contains(type)) {
+            System.out.println("Equipment already added: " + type.getSimpleName());
+            return;
+        }
+        try {
+            Constructor<? extends SoldierDecorator> ctor =
+                    type.getDeclaredConstructor(Soldier.class);
+            soldier = ctor.newInstance(soldier);
+            equipments.add(type);
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to add equipment: " + type.getName(), e);
         }
     }
 }

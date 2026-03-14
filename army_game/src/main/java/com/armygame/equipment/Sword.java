@@ -6,11 +6,14 @@ public class Sword extends SoldierDecorator {
     private final int damage = 10;
 
     Sword(Soldier source) {
-        super(source);
+        super(source, 3);
     }
 
     @Override
-    public int hit() {
-        return super.hit() + this.damage;
+    public float hit() {
+        decreaseCurrentDurability();
+        float currentDamage = damage * ((float) currentDurability / durability);
+
+        return super.hit() + currentDamage;
     }
 }

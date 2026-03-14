@@ -1,6 +1,6 @@
 package com.armygame.soldier;
 
 public interface Soldier {
-    public int hit();
-    public boolean wardOff(int strength);
+    public float hit();
+    public boolean wardOff(float strength);
 }
