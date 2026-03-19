@@ -1,0 +1,3 @@
+javac *.java equipment/*.java factory/*.java visitor/*.java soldier/*.java observer/*.java army/*.java
+
+
